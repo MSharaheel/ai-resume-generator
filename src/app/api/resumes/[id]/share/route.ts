@@ -8,43 +8,47 @@ function makeShareId() {
   return crypto.randomUUID().replace(/-/g, "");
 }
 
-export async function POST(
-  request: Request,
-  context: any
-) {
-  const { id } = context.params;
+export async function POST(req: Request, context: any) {
+  try {
+    const { id } = context.params;
 
-  const { userId } = await auth();
+    const { userId } = auth();
 
-  if (!userId) {
+    if (!userId) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const resume = await prisma.resume.findUnique({
+      where: { id },
+    });
+
+    if (!resume) {
+      return NextResponse.json(
+        { error: "Resume not found" },
+        { status: 404 }
+      );
+    }
+
+    const shareId = resume.shareId || makeShareId();
+
+    const updated = await prisma.resume.update({
+      where: { id },
+      data: {
+        shareId,
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      shareId: updated.shareId,
+    });
+  } catch (error) {
     return NextResponse.json(
-      { error: "Unauthorized" },
-      { status: 401 }
+      { error: "Internal Server Error" },
+      { status: 500 }
     );
   }
-
-  const resume = await prisma.resume.findUnique({
-    where: { id },
-  });
-
-  if (!resume) {
-    return NextResponse.json(
-      { error: "Resume not found" },
-      { status: 404 }
-    );
-  }
-
-  const shareId = resume.shareId || makeShareId();
-
-  const updated = await prisma.resume.update({
-    where: { id },
-    data: {
-      shareId,
-    },
-  });
-
-  return NextResponse.json({
-    success: true,
-    shareId: updated.shareId,
-  });
 }
