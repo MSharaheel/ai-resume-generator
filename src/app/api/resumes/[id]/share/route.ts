@@ -13,7 +13,8 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const { userId } = auth();
+
+  const { userId } = await auth();
 
   if (!userId) {
     return NextResponse.json(
