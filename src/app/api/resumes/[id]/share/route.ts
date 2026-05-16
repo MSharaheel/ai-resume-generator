@@ -13,8 +13,4 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   const { id } = params;
-
-  const user = await currentUser();
-  const userId = user?.id;
-  return NextResponse.json({ success: true });
-}
+const { userId } = auth();
