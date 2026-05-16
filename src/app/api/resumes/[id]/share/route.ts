@@ -9,10 +9,10 @@ function makeShareId() {
 }
 
 export async function POST(
-  _req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  request: Request,
+  context: any
 ) {
-  const { id } = await params;
+  const { id } = context.params;
 
   const { userId } = await auth();
 
