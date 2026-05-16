@@ -12,7 +12,7 @@ function makeShareId() {
 // Enable share (creates shareId if missing)
 export async function POST(
   _req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
-  const { id } = await params;
-  const { userId } = await
+  const { id } = params;
+  
