@@ -15,4 +15,4 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   const { id } = params;
-const { userId } = auth();
+  const { userId } = auth();
