@@ -699,9 +699,9 @@ export default function Landing() {
             <div>
               <h4 className="font-bold mb-4 text-[#FFA600]">Contact</h4>
               <ul className="space-y-3 text-sm text-white/70">
-                <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> hello@resumeforge.ai</li>
-                <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +1 (555) 123-4567</li>
-                <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> London / Remote</li>
+                <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> toppercheez@gmail.com</li>
+                <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +92 3070780607</li>
+                <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> MehmoodAbad Colony Multan</li>
               </ul>
 
               <div className="mt-5 p-3 rounded-lg bg-white/5 border border-white/10">
