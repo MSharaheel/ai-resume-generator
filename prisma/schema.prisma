@@ -11,11 +11,12 @@ model Resume {
   id         String   @id @default(cuid())
   userId     String
   title      String   @default("Untitled Resume")
-  templateId String @default("classic-ats")
+  templateId String   @default("classic-ats")
   data       Json
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  
+  isPublic   Boolean  @default(false)
+  shareId    String?  @unique
 
   @@index([userId])
 }

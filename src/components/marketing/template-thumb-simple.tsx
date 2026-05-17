@@ -21,7 +21,7 @@ export function TemplateThumbSimple({ templateId }: { templateId: string }) {
 
   return (
     <div className="w-full h-full bg-white overflow-hidden" style={{ transform: "scale(0.5)", transformOrigin: "top left", width: "200%", height: "200%" }}>
-      <TemplateRenderer templateId={templateId} data={sampleResume} />
+      <TemplateRenderer templateId={templateId as any} data={sampleResume} />
     </div>
   );
 }
